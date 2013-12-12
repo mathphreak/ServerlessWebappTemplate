@@ -94,3 +94,4 @@ module.exports = (grunt) ->
 
   # Default task.
   grunt.registerTask('default', ["clean", "coffee:compileDev", "jade:compileDev", "less", "concat:libraries", "copy", "connect:serveDev", "watch"])
+  grunt.registerTask('dist', ["clean", "coffee:compileDev", "jade:compileDev", "less", "concat:libraries", "copy")

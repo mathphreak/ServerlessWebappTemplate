@@ -16,4 +16,9 @@ Usage
 
 This will automatically compile everything, launch a Web browser pointed to the development server, and recompile and reload as needed.
 
-Then, simply edit any of the files from src/.
+Then, simply edit any of the files from `src/`.
+
+Deployment
+----------
+
+Run `grunt dist`, then distribute `out/` however you like.  `out/index.html` should work if you just open it directly in a Web browser; all the paths are relative.
