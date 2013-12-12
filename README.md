@@ -1,5 +1,5 @@
-mathphreak/template
-===================
+mathphreak/ServerlessWebappTemplate
+===================================
 
 A somewhat opinionated template for serverless web apps.
 
