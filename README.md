@@ -18,7 +18,12 @@ This will automatically compile everything, launch a Web browser pointed to the 
 
 Then, simply edit any of the files from `src/`.
 
+Configuration
+-------------
+
+Make sure you change `name` in `package.json` to the right thing so that all the file names work out.
+
 Deployment
 ----------
 
-Run `grunt dist`, then distribute `out/` however you like.  `out/index.html` should work if you just open it directly in a Web browser; all the paths are relative.
+Running `grunt dist` compiles the project and compresses `out/` into `build/` as a `.zip` and a `.tar.gz`.

@@ -2,6 +2,7 @@ module.exports = (grunt) ->
 
   # Project configuration.
   grunt.initConfig
+    pkg: grunt.file.readJSON('package.json')
     # Task configuration.
     coffee:
       compileDev:
@@ -68,6 +69,7 @@ module.exports = (grunt) ->
         ]
     clean:
       out: ["out/"]
+      build: ["build/"]
     watch:
       coffee:
         files: ["src/coffee/*.coffee"]
@@ -81,6 +83,23 @@ module.exports = (grunt) ->
       livereload:
         files: ["out/**"]
         options: livereload: true
+    compress:
+      options:
+        pretty: true
+      zip:
+        options:
+          archive: "build/<%= pkg.name %>-<%= grunt.template.today('yyyy-mm-dd') %>.zip"
+          mode: "zip"
+        files: [
+          expand: yes, cwd: "out/", src: "**", dest: ""
+        ]
+      tgz:
+        options:
+          archive: "build/<%= pkg.name %>-<%= grunt.template.today('yyyy-mm-dd') %>.tar.gz"
+          mode: "tgz"
+        files: [
+          expand: yes, cwd: "out/", src: "**", dest: ""
+        ]
 
   # These plugins provide necessary tasks.
   grunt.loadNpmTasks("grunt-contrib-coffee")
@@ -91,7 +110,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks("grunt-contrib-concat")
   grunt.loadNpmTasks("grunt-contrib-copy")
   grunt.loadNpmTasks("grunt-contrib-clean")
+  grunt.loadNpmTasks("grunt-contrib-compress")
 
   # Default task.
-  grunt.registerTask('default', ["clean", "coffee:compileDev", "jade:compileDev", "less", "concat:libraries", "copy", "connect:serveDev", "watch"])
-  grunt.registerTask('dist', ["clean", "coffee:compileDev", "jade:compileDev", "less", "concat:libraries", "copy")
+  grunt.registerTask('default', ["clean:out", "coffee:compileDev", "jade:compileDev", "less", "concat:libraries", "copy", "connect:serveDev", "watch"])
+  grunt.registerTask('dist', ["clean", "coffee:compileDev", "jade:compileDev", "less", "concat:libraries", "copy", "compress"])
